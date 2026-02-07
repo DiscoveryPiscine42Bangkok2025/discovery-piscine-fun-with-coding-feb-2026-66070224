@@ -1,0 +1,29 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  background-attachment: fixed;
+}
+
+.p1 {
+  background-image: url("a-symphony-of-random-abstract-shapes-ai-generated-photo.jpg");
+}
+
+.p2 {
+  background-color: black;
+}
+
+.p3 {
+  background-image: url("random.jpg");
+}

@@ -1,0 +1,33 @@
+body {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  color: white;
+  font-size: 100px;
+}
+
+.container {
+  display: flex;
+}
+
+.container div {
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
+  background-color: white;
+  height: 5px;
+  width: 100%;
+}
+
+span {
+  width: 100%;
+  text-align: right;
+  font-family: monospace;
+  font-style: italic;
+}

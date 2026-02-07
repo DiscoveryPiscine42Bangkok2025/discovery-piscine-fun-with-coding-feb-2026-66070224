@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-4.0.0.min.js"
+      integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 250px;
+        padding: 10px;
+        border-radius: 10px;
+        gap: 5px;
+        border: 1px solid black;
+      }
+      input {
+        padding: 5px;
+        width: 100%;
+      }
+      select {
+        padding: 5px;
+      }
+      button {
+        width: 100%;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      Calculator
+      <input type="text" name="" id="first" />
+      <select name="" id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+      </select>
+      <input type="text" name="" id="second" />
+      <button type="button" onclick="calc()">Try Me!</button>
+    </div>
+    <script>
+      function calc() {
+        const first = $("#first").val();
+        const operator = $("#operator").val();
+        const second = $("#second").val();
+
+        if (first == "" || second == "") {
+          alert("Please put something");
+          console.log("Please put something");
+          return;
+        }
+
+        const num1 = Number(first);
+        const num2 = Number(second);
+
+        if (Number.isNaN(num1) || Number.isNaN(num2)) {
+          alert("Error {Please input Number}");
+          console.log("Please input Number");
+          return;
+        }
+
+        if (num1 < 0 || num2 < 0) {
+          alert("Error {Number must be positive}");
+          console.log("Number must be positive");
+          return;
+        }
+
+        if ((operator == "/" || operator == "%") && num2 <= 0) {
+          alert("Error {It's over 9000!}");
+          console.log("It's over 9000!");
+          return;
+        }
+
+        const test = eval(num1 + operator + num2);
+        alert(test);
+        console.log(test);
+      }
+      setInterval(function () {
+        alert("Please use me!!");
+      }, 30000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gray;
+      }
+      .todo {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background-color: whitesmoke;
+        border-radius: 25px;
+      }
+      h1 {
+        margin: 0;
+      }
+      #ft_list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+      }
+      #ft_list div {
+        background-color: white;
+        padding: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="todo">
+      <h1>TODO LIST</h1>
+      <button id="new" type="button">New</button>
+      <div id="ft_list"></div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-4.0.0.min.js"
+      integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function getCookie() {
+        let match = document.cookie.match(
+          new RegExp("(^| )" + "tasks" + "=([^;]+)"),
+        );
+        return match ? decodeURIComponent(match[2]) : null;
+      }
+
+      function loadTasks() {
+        const saved = getCookie();
+        if (saved) {
+          const tasks = JSON.parse(saved);
+          tasks.reverse();
+          tasks.forEach((task) => addTask(task, false));
+        }
+      }
+
+      function saveTasks() {
+        document.cookie =
+          "tasks=" +
+          JSON.stringify(
+            $("#ft_list")
+              .children()
+              .map(function () {
+                return $(this).text();
+              })
+              .get(),
+          ) +
+          ";";
+      }
+
+      function addTask(text, save = true) {
+        $("<div></div>")
+          .text(text)
+          .on("click", function () {
+            if (confirm("Remove?")) {
+              $(this).remove();
+              saveTasks();
+            }
+          })
+          .prependTo($("#ft_list"));
+
+        if (save) saveTasks();
+      }
+
+      $("#new").on("click", function () {
+        let text = prompt("Enter a new TO DO:");
+        if (text && text.trim() !== "") {
+          addTask(text.trim());
+        }
+      });
+
+      window.onload = loadTasks;
+    </script>
+  </body>
+</html>

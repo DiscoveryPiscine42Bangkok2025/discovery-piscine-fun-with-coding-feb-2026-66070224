@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+}
+table {
+  width: 100%;
+  min-height: 100vh;
+  border-collapse: collapse;
+}
+table,
+tr,
+td {
+  border: 1px solid black;
+}
+td {
+  padding-block: 25px;
+}

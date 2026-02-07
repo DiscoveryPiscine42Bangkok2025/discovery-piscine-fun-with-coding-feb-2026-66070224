@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+    </style>
+    <script
+      src="https://code.jquery.com/jquery-4.0.0.min.js"
+      integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div
+      onclick="grow()"
+      class="balloon"
+      id="balloon"
+      style="
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        border-radius: 100%;
+      "
+    ></div>
+  </body>
+  <script>
+    function grow() {
+      const balloon = $("#balloon");
+      const number = Number.parseInt(balloon.css("height").slice(0, 3)) + 10;
+      if (number > 420) {
+        balloon.css("height", "200px");
+        balloon.css("width", "200px");
+        return;
+      }
+      balloon.css("height", number + "px");
+      balloon.css("width", number + "px");
+
+      const colors = ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"];
+      let color =
+        colors.findIndex((value) => value == balloon.css("background-color")) +
+        1;
+      if (color > 2) color = 0;
+      balloon.css("background-color", colors[color]);
+    }
+
+    document.getElementById("balloon").addEventListener("mouseleave", () => {
+      const balloon = $("#balloon");
+      const number = Number.parseInt(balloon.css("height").slice(0, 3)) - 5;
+      if (number <= 205) {
+        balloon.css("height", "200px");
+        balloon.css("width", "200px");
+        return;
+      }
+      balloon.css("height", number + "px");
+      balloon.css("width", number + "px");
+
+      const colors = ["rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)"];
+      let color =
+        colors.findIndex((value) => value == balloon.css("background-color")) -
+        1;
+      if (color < 0) color = 2;
+      balloon.css("background-color", colors[color]);
+    });
+  </script>
+</html>

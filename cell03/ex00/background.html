@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="changeColor()">Click Me!</button>
+  </body>
+  <script>
+    function changeColor() {
+      const body = document.body;
+      const colors = ["white", "black", "red", "green"];
+      body.style.backgroundColor =
+        colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</html>

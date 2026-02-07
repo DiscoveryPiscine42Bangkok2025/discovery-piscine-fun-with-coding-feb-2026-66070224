@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      onclick="grow()"
+      class="balloon"
+      id="balloon"
+      style="
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        border-radius: 100%;
+      "
+    ></div>
+  </body>
+  <script>
+    function grow() {
+      const balloon = document.getElementById("balloon");
+      const number = Number.parseInt(balloon.style.height.slice(0, 3)) + 10;
+      if (number > 420) {
+        balloon.style.height = "200px";
+        balloon.style.width = "200px";
+        return;
+      }
+      balloon.style.height = number + "px";
+      balloon.style.width = number + "px";
+      const colors = ["red", "green", "blue"];
+      let color =
+        colors.findIndex((value) => value == balloon.style.backgroundColor) + 1;
+      if (color > 2) color = 0;
+      balloon.style.backgroundColor = colors[color];
+    }
+
+    document.getElementById("balloon").addEventListener("mouseleave", () => {
+      const balloon = document.getElementById("balloon");
+      const number = Number.parseInt(balloon.style.height.slice(0, 3)) - 5;
+      if (number <= 205) {
+        balloon.style.height = "200px";
+        balloon.style.width = "200px";
+        return;
+      }
+      balloon.style.height = number + "px";
+      balloon.style.width = number + "px";
+      const colors = ["red", "green", "blue"];
+      let color =
+        colors.findIndex((value) => value == balloon.style.backgroundColor) - 1;
+      if (color < 0) color = 2;
+      balloon.style.backgroundColor = colors[color];
+    });
+  </script>
+</html>
